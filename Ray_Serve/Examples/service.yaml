@@ -1,0 +1,7 @@
+name: pytorch-service-demo
+entrypoint: python pytorch_serve.py
+runtime_env:
+  working_dir: .
+  upload_path: "s3://kyle-anyscale-sandbox"
+  pip: ["torch==1.13.0", "torchvision==0.14.0"]
+healthcheck_url: "/healthcheck"

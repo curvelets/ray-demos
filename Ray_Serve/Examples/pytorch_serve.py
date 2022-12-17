@@ -1,4 +1,5 @@
 from ray import serve
+from fastapi import FastAPI, Body
 
 from io import BytesIO
 from PIL import Image
@@ -9,8 +10,10 @@ import torch
 from torchvision import transforms
 from torchvision.models import resnet18
 
+app = FastAPI()
 
-@serve.deployment
+@serve.deployment(route_prefix="/")
+@serve.ingress(app)
 class ImageModel:
     def __init__(self):
         self.model = resnet18(pretrained=True).eval()
@@ -25,8 +28,8 @@ class ImageModel:
                 ),
             ]
         )
-
-    async def __call__(self, starlette_request: Request) -> Dict:
+    @app.post('/image_predict')
+    async def inference_call(self, starlette_request: Request) -> Dict:
         image_payload_bytes = await starlette_request.body()
         pil_image = Image.open(BytesIO(image_payload_bytes))
         print("[1/3] Parsed image data: {}".format(pil_image))
@@ -41,6 +44,11 @@ class ImageModel:
             output_tensor = self.model(input_tensor)
         print("[3/3] Inference done!")
         return {"class_index": int(torch.argmax(output_tensor[0]))}
-
-
+        
+    @app.get('/healthcheck')
+    def healthcheck(self):
+        return
+	  
 image_model = ImageModel.bind()
+
+serve.run(image_model)
