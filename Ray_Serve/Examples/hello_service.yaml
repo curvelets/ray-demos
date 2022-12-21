@@ -1,0 +1,6 @@
+name: hello-github-service-demo
+entrypoint: python hello_serve.py
+runtime_env:
+  working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip
+  #  upload_path: "s3://kyle-anyscale-sandbox"
+healthcheck_url: "/healthcheck"
