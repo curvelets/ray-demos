@@ -1,0 +1,8 @@
+name: yolov7-service-demo
+entrypoint: python ray_serve.py
+cluster_env: yolo_cluster_env:1
+runtime_env:
+  working_dir: .
+  upload_path: "s3://kyle-anyscale-sandbox"
+  pip: ["torch==1.13.0", "torchvision==0.14.0","opencv-python","seaborn"]
+healthcheck_url: "/healthcheck"

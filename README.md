@@ -21,3 +21,7 @@
 - [Pytorch_Model_Serving.ipynb](https://docs.ray.io/en/latest/serve/tutorials/serve-ml-models.html)
 - [1/2/3.png, service.yaml, imagenet_class_index.json, _scritp.sh](adding to exmaple above)
 - [hello_serve.py hello_service.yaml](https://docs.anyscale.com/user-guide/run-and-monitor/production-services)
+
+## YOLOv7
+- [YOLOv7 Train on Anyscale]()
+- [YOLOv7 Serve on Anyscale]()

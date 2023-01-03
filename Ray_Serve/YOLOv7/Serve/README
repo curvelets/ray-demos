@@ -1,0 +1,5 @@
+# Host YOLOv7 Model with Ray Serve
+1. Get 'models' and 'utils' folders from https://github.com/WongKinYiu/yolov7
+2. Build Anyscale cluster environment. Include "sudo apt install -y libgl1-mesa-glx" for OpenCV
+3. Modify service.yaml to use a proper S3 bucket for artifacts upload and make sure you have AWS credential setup for the s3 bucket
+

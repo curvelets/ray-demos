@@ -1,0 +1,5 @@
+base_image: anyscale/ray:2.1.0-py38 
+post_build_cmds:
+- sudo apt install -y libgl1-mesa-glx
+
+
